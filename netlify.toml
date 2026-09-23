@@ -1,0 +1,14 @@
+# Instrucciones para Netlify: la página está en la carpeta "frontend"
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# La app tiene varias pantallas (/login, /ventas, ...): siempre se sirve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
