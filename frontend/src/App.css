@@ -1,0 +1,224 @@
+/* App.css ORIGINAL MANTENIDO LÍNEA POR LÍNEA */
+#root {
+  max-width: none; 
+  margin: 0; 
+  padding: 0; 
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.admin-layout-container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #deb887; 
+    position: relative; 
+}
+
+.sidebar {
+    width: 280px; 
+    position: fixed;
+    top: 0;
+    left: -280px; 
+    bottom: 0;
+    background-color: #fff;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    z-index: 1050; 
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: left 0.3s ease-in-out; 
+}
+
+.sidebar.open {
+    left: 0; 
+}
+
+.sidebar-content {
+    margin-left: 0;
+    flex-grow: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out; 
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    color: #212529; 
+}
+
+.sidebar-item.active {
+    background-color: #f5e6d3; 
+    color: #5c3d2e; 
+}
+
+.sidebar-item:not(.active):hover {
+    background-color: #fff8f0; 
+}
+
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1060; 
+    background-color: #d4904e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: #c13a3acb;
+}
+
+/* =========================================
+   NUEVOS ESTILOS AGREGADOS (ESTÉTICA PREMIUM)
+   ========================================= */
+
+/* TÍTULOS EN BLANCO BRILLANTE */
+.titulo-analitico, .titulo-gestion {
+  color: #ffffff !important; /* Blanco puro */
+  font-family: 'Georgia', serif;
+  font-weight: 900;
+  font-size: 3.5rem !important;
+  /* Resplandor blanco + sutil dorado */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 
+               0 0 30px rgba(202, 162, 110, 0.3) !important;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.header-gestion-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+/* BUSCADOR CÁPSULA */
+.search-container-premium {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  border: 1px solid rgba(202, 162, 110, 0.5);
+  padding: 5px 25px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-premium {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px;
+  outline: none;
+}
+
+.search-icon { color: #eea546; margin-right: 10px; }
+
+/* TABLA NEGRA TRANSPARENTE (TIPO CRISTAL) */
+.tabla-container-pro {
+    background: rgba(15, 15, 15, 0.8) !important; 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    margin-top: 100px !important; /* BAJA EL RECUADRO */
+}
+
+/* Forzar transparencia para matar el blanco */
+.tabla-container-pro div, 
+.tabla-container-pro .card, 
+.tabla-container-pro .table-responsive,
+.tabla-container-pro table,
+.tabla-container-pro tr,
+.tabla-container-pro td {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #ffffff !important; /* Letras de datos en blanco */
+}
+
+/* CABECERAS XL COLOR CREMA */
+.tabla-container-pro thead th {
+  color: #d37d0e !important; 
+  background-color: rgba(202, 162, 110, 0.1) !important;
+  font-size: 1.4rem !important;
+  border-bottom: 4px solid #caa26e !important;
+  padding: 25px !important;
+}
+
+/* BOTONES DE ACCIÓN (LÁPIZ AZUL / TACHO ROJO) */
+.tabla-container-pro .btn-primary, 
+.tabla-container-pro .btn-editar { 
+  background-color: #0d6efd !important;
+  color: white !important;
+  border-radius: 12px;
+  padding: 10px 15px;
+}
+
+.tabla-container-pro .btn-danger,
+.tabla-container-pro .btn-eliminar { 
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 12px;
+  padding: 10px 15px;
+}
+
+/* Ajuste general de celdas */
+.tabla-container-pro tbody td {
+  font-size: 1.2rem !important;
+  padding: 20px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; 
+}
+
+/* PANEL DE GRÁFICOS (IGUAL A LA TABLA) */
+.dark-card-panel {
+    background: rgba(15, 15, 15, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}

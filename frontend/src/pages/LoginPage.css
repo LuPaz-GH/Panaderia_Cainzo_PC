@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Nunito:wght@400;600;700&display=swap");
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background:
+    linear-gradient(rgba(255, 248, 240, 0), rgba(245, 230, 211, 0)),
+    url("/fondo.jpg") center / cover no-repeat;
+  font-family: "Nunito", system-ui, sans-serif;
+}
+
+/* ---------- Tarjeta de vidrio ---------- */
+.login-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 44px 38px 34px;
+  border-radius: 28px;
+  background: rgba(251, 249, 243, 0.78);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 30px 60px -20px rgba(24, 40, 28, 0.45),
+    0 0 0 1px rgba(107, 143, 113, 0.08) inset;
+  text-align: center;
+  animation: login-aparecer 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes login-aparecer {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- Encabezado ---------- */
+.login-logo {
+  width: 78px;
+  height: 78px;
+  margin: -84px auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  background: linear-gradient(145deg, #f6faf3, #dce8da);
+  border: 4px solid #fbf9f3;
+  box-shadow: 0 12px 24px -8px rgba(47, 74, 53, 0.45);
+}
+
+.login-marca {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #2f4a35;
+  letter-spacing: 0.5px;
+}
+
+.login-subtitulo {
+  margin: 4px 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #6b8f71;
+}
+
+.login-separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 26px;
+  color: #8fa893;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.login-separador::before,
+.login-separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #bfd2bf, transparent);
+}
+
+/* ---------- Campos ---------- */
+.login-campo {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.login-campo label {
+  display: block;
+  margin: 0 0 7px 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3e5a44;
+}
+
+.login-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input .icono {
+  position: absolute;
+  left: 16px;
+  font-size: 1.05rem;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.login-input input {
+  width: 100%;
+  padding: 14px 48px 14px 46px;
+  border-radius: 14px;
+  border: 1.5px solid #d5e2d3;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 0.98rem;
+  color: #2f4a35;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.login-input input::placeholder {
+  color: #9dae9f;
+}
+
+.login-input input:focus {
+  border-color: #6b8f71;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(107, 143, 113, 0.18);
+}
+
+.login-ver {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s, background 0.2s;
+}
+.login-ver:hover {
+  opacity: 1;
+  background: rgba(107, 143, 113, 0.12);
+}
+
+/* ---------- Botón ---------- */
+.login-boton {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px 24px;
+  border: none;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background: linear-gradient(135deg, #7fa385 0%, #4f6f55 100%);
+  box-shadow: 0 10px 22px -8px rgba(79, 111, 85, 0.7);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+}
+.login-boton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 28px -10px rgba(79, 111, 85, 0.8);
+}
+.login-boton:active {
+  transform: translateY(0);
+}
+
+.login-pie {
+  margin: 24px 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #6b7f6e;
+}
+
+@media (max-width: 480px) {
+  .login-card { padding: 40px 24px 28px; }
+  .login-marca { font-size: 1.8rem; }
+}

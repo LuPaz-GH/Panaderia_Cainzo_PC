@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@600;700;800&display=swap");
+
+/* Colores por tipo: --c1/--c2 = degradé del botón y el ícono, --suave = fondo del ícono */
+.av-card,
+.av-toast {
+  --c1: #7fa385;
+  --c2: #4f6f55;
+  --suave: #dcebdd;
+  --tinta: #2f4a35;
+}
+.av-card.peligro, .av-toast.peligro,
+.av-card.error,   .av-toast.error {
+  --c1: #e27d7d;
+  --c2: #b83f45;
+  --suave: #f9dede;
+  --tinta: #9c2f36;
+}
+.av-card.restaurar, .av-toast.restaurar {
+  --c1: #6fc3ae;
+  --c2: #3f8f7b;
+  --suave: #d9f4ec;
+  --tinta: #2e6f5f;
+}
+.av-card.editar, .av-toast.editar {
+  --c1: #7ea6d9;
+  --c2: #4a72a8;
+  --suave: #dfeaf8;
+  --tinta: #365a8a;
+}
+
+/* ---------- Tarjeta centrada ---------- */
+.av-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(18, 28, 21, 0.55);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  animation: av-fundido 0.18s ease-out both;
+}
+.av-fondo.saliendo {
+  animation: av-fundido-salida 0.17s ease-in both;
+}
+
+.av-card {
+  width: min(440px, 100%);
+  padding: 34px 32px 28px;
+  border-radius: 28px;
+  background: #fbf9f3;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 70px -20px rgba(10, 20, 12, 0.6);
+  text-align: center;
+  font-family: "Nunito", system-ui, sans-serif;
+  color: #2f4a35;
+  animation: av-aparecer 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.av-fondo.saliendo .av-card {
+  animation: av-desaparecer 0.17s ease-in both;
+}
+
+.av-icono {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--c2);
+  background: var(--suave);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--suave) 45%, transparent);
+}
+.av-icono svg {
+  width: 36px;
+  height: 36px;
+}
+
+.av-titulo {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1f3526;
+}
+
+.av-destacado {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 12px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid var(--suave);
+  color: var(--tinta);
+  font-weight: 800;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.av-mensaje {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #475a4b;
+  white-space: pre-line;
+}
+
+.av-nota {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #eef4ec;
+  color: #4f6f55;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+}
+.av-nota svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.av-botones {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.av-btn {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s, filter 0.2s;
+}
+.av-btn.principal {
+  border: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  box-shadow: 0 10px 22px -10px var(--c2);
+}
+.av-btn.principal:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 26px -10px var(--c2);
+}
+.av-btn.secundario {
+  border: 2px solid #d5e2d3;
+  color: #2f4a35;
+  background: #ffffff;
+}
+.av-btn.secundario:hover {
+  background: #eef4ec;
+  border-color: #a9c2ac;
+}
+.av-btn:focus-visible {
+  outline: 3px solid #7ed4be;
+  outline-offset: 3px;
+}
+
+/* ---------- Notificaciones ---------- */
+.av-toasts {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 3100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(430px, calc(100vw - 32px));
+  pointer-events: none;
+}
+
+.av-toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px 16px;
+  border-radius: 18px;
+  background: #fbf9f3;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 40px -16px rgba(10, 20, 12, 0.55);
+  font-family: "Nunito", system-ui, sans-serif;
+  overflow: hidden;
+  pointer-events: auto;
+  animation: av-entrar 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.av-toast.saliendo {
+  animation: av-salir 0.22s ease-in both;
+}
+
+.av-toast-icono {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--c2);
+  background: var(--suave);
+}
+.av-toast-icono svg {
+  width: 22px;
+  height: 22px;
+}
+
+.av-toast-texto {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.av-toast-texto strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #1f3526;
+}
+.av-toast-texto span {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #5d6f61;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.av-toast-accion {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.av-toast-accion:hover {
+  filter: brightness(1.08);
+}
+
+.av-toast-cerrar {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #8a9a8d;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.av-toast-cerrar:hover {
+  background: #eef4ec;
+  color: #2f4a35;
+}
+
+.av-toast-barra {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  transform-origin: left;
+  animation: av-barra linear both;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes av-fundido { from { opacity: 0; } to { opacity: 1; } }
+@keyframes av-fundido-salida { from { opacity: 1; } to { opacity: 0; } }
+@keyframes av-aparecer {
+  from { opacity: 0; transform: translateY(14px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes av-desaparecer {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.96); }
+}
+@keyframes av-entrar {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes av-salir {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(40px); }
+}
+@keyframes av-barra {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+@media (max-width: 480px) {
+  .av-card { padding: 28px 20px 22px; }
+  .av-botones { flex-direction: column-reverse; }
+  .av-toasts { right: 16px; left: 16px; width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-fondo, .av-card, .av-toast { animation: none !important; }
+}

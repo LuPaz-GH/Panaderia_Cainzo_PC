@@ -1,0 +1,21 @@
+# Dependencias (se instalan con npm install)
+node_modules/
+
+# Contraseñas y configuración local: NUNCA subir
+.env
+.env.*
+!.env.example
+
+# Builds
+dist/
+build/
+
+# Logs
+*.log
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea
