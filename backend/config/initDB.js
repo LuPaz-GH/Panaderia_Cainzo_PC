@@ -1,23 +1,16 @@
-// config/db.js
+// config/initDB.js
+// Crea la base de datos, las tablas y los datos de ejemplo a partir de base_datos.sql.
+// OJO: borra la base "panaderiacainzo" si ya existía.
+//   node config/initDB.js
 import mysql from "mysql2";
 import fs from "fs";
-import dotenv from "dotenv";
+import { datosConexion } from "./conexion.js";
 
-//Este archivo crea la base de datos y la carga al workbench
-
-dotenv.config();
-
-//  Lee el archivo base_datos.sql
-const sqlScript = fs.readFileSync("base_datos.sql", "utf8");
+// base_datos.sql está en la carpeta backend (una arriba de esta)
+const sqlScript = fs.readFileSync(new URL("../base_datos.sql", import.meta.url), "utf8");
 
 // Conexión a MySQL (sin elegir base todavía)
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  port: Number(process.env.DB_PORT || 3306),
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  multipleStatements: true ,
-});
+const connection = mysql.createConnection({ ...datosConexion({ conBase: false }), multipleStatements: true });
 
 connection.connect((err) => {
   if (err) {
@@ -27,7 +20,7 @@ connection.connect((err) => {
   console.log(" Conectado a MySQL");
 
   //  Ejecuta el script SQL completo
-  connection.query(sqlScript, (err, results) => {
+  connection.query(sqlScript, (err) => {
     if (err) {
       console.error(" Error al ejecutar el script SQL:", err);
     } else {

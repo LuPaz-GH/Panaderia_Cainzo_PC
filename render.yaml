@@ -1,0 +1,34 @@
+# Instrucciones para Render: el backend está en la carpeta "backend"
+services:
+  - type: web
+    name: panaderia-cainzo-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Página que puede usar el backend
+      - key: FRONTEND_URL
+        value: https://panaderiacainzo.netlify.app
+      # Clave para las sesiones: Render la inventa sola
+      - key: JWT_SECRET
+        generateValue: true
+      # Base de datos en Aiven (Render te los pide al crear el servicio)
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: panaderiacainzo
+      - key: DB_SSL
+        value: "true"
+      - key: DB_CA_CERT
+        sync: false

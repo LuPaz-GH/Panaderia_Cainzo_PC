@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import clienteService from "../services/clienteService";
 import productoService from "../services/productosService";
 import { avisar } from "./avisos/Avisos";
+import { API_URL } from "../services/api";
 
-const USUARIOS_URL = "http://localhost:3000/api/usuarios/";
+const USUARIOS_URL = `${API_URL}/usuario`;
 
 function ModalNuevaVenta({ onClose, onCreateVenta, onUpdateVenta, editingVenta }) {
   const [encabezado, setEncabezado] = useState({

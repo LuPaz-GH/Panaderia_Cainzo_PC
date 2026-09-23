@@ -2,7 +2,8 @@
 // Cosas compartidas por todos los servicios: dirección del backend y datos de la sesión.
 import { avisar } from "../component/avisos/Avisos";
 
-export const API_URL = "http://localhost:3000";
+// En tu compu usa el backend local; en Netlify usa VITE_API_URL (la dirección de Render)
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export const obtenerSesion = () => {
   try {

@@ -1,11 +1,12 @@
 import axios from "axios";
+import { API_URL as SERVIDOR } from "./api";
 
-const API_URL = "http://localhost:3000/api/estadisticas"; 
+const API_URL = `${SERVIDOR}/api/estadisticas`;
 
 export const getDatosEstadisticas = async () => {
     try {
         const response = await axios.get(`${API_URL}/dashboard`);
-        
+
         return {
             productos: response.data.productos || [],
             insumos: response.data.insumos || [],

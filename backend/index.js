@@ -16,12 +16,23 @@ import estadisticasRouters from "./routers/estadisticasRouters.js";
 dotenv.config();
 const app = express();
 
+// Páginas que pueden usar este backend: la de tu compu y la publicada (FRONTEND_URL, ej. Netlify)
+const origenesPermitidos = [
+  "http://localhost:5173",
+  ...(process.env.FRONTEND_URL || "").split(",").map((u) => u.trim()).filter(Boolean),
+];
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: origenesPermitidos,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "Accept"]
 }));
 app.use(express.json());
+
+// Para comprobar que el servidor está prendido (lo usa Render)
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "Backend de Panificadora Cainzo funcionando" });
+});
 
 // Lee el token de sesión (si viene) para saber qué usuario hace cada pedido
 app.use(identificarUsuario);
