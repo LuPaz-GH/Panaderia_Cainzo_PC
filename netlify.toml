@@ -6,6 +6,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Dirección del backend publicado en Render
+  VITE_API_URL = "https://panaderia-cainzo-backend.onrender.com"
 
 # La app tiene varias pantallas (/login, /ventas, ...): siempre se sirve index.html
 [[redirects]]
