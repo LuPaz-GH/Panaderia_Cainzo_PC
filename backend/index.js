@@ -10,7 +10,7 @@ import loginRouter from "./routers/loginRouter.js"
 import papeleraRouters from "./routers/papeleraRouters.js";
 import auditoriaRouters from "./routers/auditoriaRouters.js";
 import { identificarUsuario, soloLecturaInvitado } from "./middlewares/auth.js";
-import "./config/db.js";
+import { pool } from "./config/db.js";
 import estadisticasRouters from "./routers/estadisticasRouters.js";
 
 dotenv.config();
@@ -32,6 +32,16 @@ app.use(express.json());
 // Para comprobar que el servidor está prendido (lo usa Render)
 app.get("/", (req, res) => {
   res.json({ success: true, message: "Backend de Panificadora Cainzo funcionando" });
+});
+
+// Para comprobar la conexión con la base de datos. Solo muestra el código del error (sin claves).
+app.get("/salud-db", async (req, res) => {
+  try {
+    await pool.query("SELECT activo FROM usuario LIMIT 1");
+    res.json({ success: true, message: "Base de datos conectada" });
+  } catch (error) {
+    res.status(500).json({ success: false, codigo: error.code });
+  }
 });
 
 // Lee el token de sesión (si viene) para saber qué usuario hace cada pedido
