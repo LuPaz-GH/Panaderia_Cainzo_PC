@@ -3,12 +3,12 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import "./MenuPrincipal.css";
-import { cerrarSesion, esDueno, obtenerSesion } from "../services/api";
+import { cerrarSesion, esInvitado, obtenerSesion, veTodo } from "../services/api";
 
 function MenuPrincipal() {
   const navigate = useNavigate();
   const usuario = obtenerSesion();
-  const dueno = esDueno();
+  const dueno = veTodo();
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -104,7 +104,9 @@ function MenuPrincipal() {
             <div>
               <h1 className="menu-saludo">¡Bienvenido a Cainzo System!</h1>
               <p className="menu-sub">
-                {usuario ? `Hola, ${usuario.nombre_usuario} · ` : ""}¿Qué vamos a hacer hoy?
+                {esInvitado()
+                  ? "Modo demo · podés recorrer todo, pero no se guardan cambios"
+                  : `${usuario ? `Hola, ${usuario.nombre_usuario} · ` : ""}¿Qué vamos a hacer hoy?`}
               </p>
             </div>
           </div>

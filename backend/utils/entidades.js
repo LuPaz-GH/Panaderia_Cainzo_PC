@@ -2,7 +2,7 @@
 // Configuración y funciones comunes para las tablas con paginado, borrado lógico y restauración.
 import { pool } from "../config/db.js";
 import { registrarAuditoria } from "./auditoria.js";
-import { esDueno } from "../middlewares/auth.js";
+import { esDueno, esInvitado } from "../middlewares/auth.js";
 
 export const ENTIDADES = {
   producto: {
@@ -112,7 +112,8 @@ export const listarEliminados = async (entidad, query, usuario) => {
   const condiciones = ["t.activo = 0"];
   const params = [];
 
-  if (!esDueno(usuario)) {
+  // El invitado (demo) ve todo, igual que el Dueño
+  if (!esDueno(usuario) && !esInvitado(usuario)) {
     condiciones.push("t.eliminado_por = ?");
     params.push(usuario.id_usuario);
   }

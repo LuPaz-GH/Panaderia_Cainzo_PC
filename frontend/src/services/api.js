@@ -15,6 +15,10 @@ export const obtenerSesion = () => {
 
 export const esDueno = () => obtenerSesion()?.rol === "Dueño";
 
+// Invitado = modo demo: ve todo lo que ve el Dueño, pero el backend no le deja guardar cambios
+export const esInvitado = () => obtenerSesion()?.rol === "Invitado";
+export const veTodo = () => esDueno() || esInvitado();
+
 export const guardarSesion = (usuario, token) => {
   localStorage.setItem("usuario", JSON.stringify(usuario));
   localStorage.setItem("token", token);

@@ -179,6 +179,26 @@
   transform: translateY(0);
 }
 
+/* Entrada de demostración (solo lectura) */
+.login-invitado {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 24px;
+  border: 2px solid #7fa385;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #4f6f55;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.login-invitado:hover {
+  background: #7fa385;
+  color: #fff;
+}
+
 .login-pie {
   margin: 24px 0 0;
   font-family: "Playfair Display", Georgia, serif;

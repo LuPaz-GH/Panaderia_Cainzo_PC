@@ -1,5 +1,5 @@
 import { pool } from "../config/db.js";
-import { firmarToken } from "../middlewares/auth.js";
+import { firmarToken, firmarTokenInvitado, USUARIO_INVITADO } from "../middlewares/auth.js";
 
 export const login = async (req, res) => {
   const { email, contrasena } = req.body;
@@ -22,4 +22,9 @@ export const login = async (req, res) => {
     console.error(error);
     return res.status(500).json({ success: false, message: "Error en el servidor" });
   }
+};
+
+// Entrada de demostración: no pide contraseña y el token solo sirve para consultar
+export const loginInvitado = (req, res) => {
+  return res.json({ success: true, data: USUARIO_INVITADO, token: firmarTokenInvitado() });
 };

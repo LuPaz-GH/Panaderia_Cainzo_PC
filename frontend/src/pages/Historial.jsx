@@ -3,7 +3,7 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import Paginacion from "../component/Paginacion";
 import { auditoriaService } from "../services/papeleraService";
-import { esDueno } from "../services/api";
+import { veTodo } from "../services/api";
 import { formatearFecha } from "./Papelera";
 import "./Auditoria.css";
 
@@ -112,7 +112,7 @@ function DetalleCambios({ registro }) {
 const FILTROS_VACIOS = { tabla: "", accion: "", id_usuario: "", desde: "", hasta: "" };
 
 function Historial() {
-  const dueno = esDueno();
+  const dueno = veTodo();
   const [filtros, setFiltros] = useState(FILTROS_VACIOS);
   const [pagina, setPagina] = useState(1);
   const [limite, setLimite] = useState(15);

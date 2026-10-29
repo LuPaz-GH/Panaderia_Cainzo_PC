@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { cerrarSesion, esDueno } from "../services/api";
+import { cerrarSesion, esInvitado, veTodo } from "../services/api";
 
 function SideMenu({ children }) {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ function SideMenu({ children }) {
         { name: "Clientes", icon: "👥", path: "/clientes" },
         { name: "Papelera", icon: "🗑️", path: "/papelera" },
         // El historial de cambios solo lo ve el administrador (Dueño)
-        ...(esDueno() ? [{ name: "Historial", icon: "📜", path: "/historial" }] : []),
+        ...(veTodo() ? [{ name: "Historial", icon: "📜", path: "/historial" }] : []),
     ];
 
     const handleNavigation = (path) => {
@@ -63,6 +63,22 @@ function SideMenu({ children }) {
                     >
                         🥖 Admin Panel
                     </div>
+
+                    {esInvitado() && (
+                        <div
+                            style={{
+                                margin: "-15px 20px 20px",
+                                padding: "8px 12px",
+                                borderRadius: "10px",
+                                background: "rgba(212, 144, 78, 0.15)",
+                                border: "1px solid #d4904e",
+                                color: "#f0c79d",
+                                fontSize: "0.85rem",
+                            }}
+                        >
+                            👀 Modo demo · solo lectura
+                        </div>
+                    )}
 
                     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                         {menuItems.map((item) => (

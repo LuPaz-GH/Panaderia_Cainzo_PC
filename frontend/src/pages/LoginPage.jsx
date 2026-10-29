@@ -43,6 +43,27 @@ function LoginPage() {
       });
     }
   };
+
+  // Demo: entra sin cuenta, puede recorrer todo pero no guardar cambios
+  const entrarComoInvitado = async () => {
+    try {
+      const response = await fetch(`${API_URL}/login/invitado`, { method: "POST" });
+      const data = await response.json();
+      if (!data.success) {
+        avisar({ tipo: "error", titulo: "No pudimos entrar al demo", mensaje: data.message || "Probá de nuevo." });
+        return;
+      }
+      guardarSesion(data.data, data.token);
+      navigate("/HomePage");
+    } catch (error) {
+      avisar({
+        tipo: "error",
+        titulo: "Sin conexión con el servidor",
+        mensaje: "Revisá que el backend esté prendido (npm run dev en la carpeta backend).",
+      });
+    }
+  };
+
   return (
     <section className="login-page">
       <div className="login-card">
@@ -97,6 +118,10 @@ function LoginPage() {
             Ingresar
           </button>
         </form>
+
+        <button className="login-invitado" type="button" onClick={entrarComoInvitado}>
+          👀 Entrar como invitado (demo)
+        </button>
 
         <p className="login-pie">Horneado con amor, todos los días 🌿</p>
       </div>

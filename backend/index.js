@@ -9,7 +9,7 @@ import clienteRouters from "./routers/clienteRouters.js"
 import loginRouter from "./routers/loginRouter.js"
 import papeleraRouters from "./routers/papeleraRouters.js";
 import auditoriaRouters from "./routers/auditoriaRouters.js";
-import { identificarUsuario } from "./middlewares/auth.js";
+import { identificarUsuario, soloLecturaInvitado } from "./middlewares/auth.js";
 import "./config/db.js";
 import estadisticasRouters from "./routers/estadisticasRouters.js";
 
@@ -36,6 +36,8 @@ app.get("/", (req, res) => {
 
 // Lee el token de sesión (si viene) para saber qué usuario hace cada pedido
 app.use(identificarUsuario);
+// El usuario invitado (demo) puede mirar todo pero no modificar nada
+app.use(soloLecturaInvitado);
 
 app.use("/cliente", clienteRouters);
 app.use("/insumo", insumoRouters);
